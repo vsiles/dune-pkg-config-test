@@ -1,0 +1,11 @@
+prefix=/some/invalid/path/to/b/lib
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: b
+Description: b lib
+Version: 1.0.0
+Libs: -L${libdir} -lb
+Libs.private: -ldl -lpthread
+Cflags: -I${includedir}

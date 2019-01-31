@@ -1,0 +1,10 @@
+prefix=/some/stupid/path
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: a
+Description: a lib
+URL: http://www.a.org
+Version: 1.0.0
+Libs: -L${libdir} -la
+Cflags: -I${includedir}

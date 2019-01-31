@@ -1,0 +1,26 @@
+# expected output when PKG_CONFIG_PATH is not set in the env
+$ dune build pkg.exe
+
+$ dune exec $PWD/_build/default/pkg.exe
+Can't find PKG_CONFIG_PATH in env
+-la
+-lb
+
+$ PKG_CONFIG_PATH=$PWD dune exec $PWD/_build/default/pkg.exe
+PKG_CONFIG_PATH=<content of $PWD>
+-la
+-lb
+
+$ pkg-config a b --cflags --libs
+Package a was not found in the pkg-config search path.
+Perhaps you should add the directory containing `a.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'a' found
+Package b was not found in the pkg-config search path.
+Perhaps you should add the directory containing `b.pc'
+to the PKG_CONFIG_PATH environment variable
+No package 'b' found
+
+$ PKG_CONFIG_PATH=$PWD pkg-config a b --cflags --libs
+-I/some/stupid/path/include -I/some/invalid/path/to/b/lib/include
+-L/some/stupid/path/lib -L/some/invalid/path/to/b/lib/lib -la -lb
